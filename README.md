@@ -1,73 +1,75 @@
 # AWS EC2 Nginx Portfolio Deployment
 
-## Project Overview
+## 📌 Project Overview
 
-This project demonstrates the deployment of my personal portfolio website on an AWS EC2 Ubuntu instance using the Nginx web server. The website is hosted on a cloud server and is publicly accessible through the internet.
+This project demonstrates how to deploy a personal portfolio website on an AWS EC2 Ubuntu instance using the Nginx web server. The website is hosted on a cloud server and can be accessed using the EC2 Public IP address.
 
 ---
 
-## Technologies Used
+## 🚀 Features
+
+- Deploy Portfolio Website on AWS EC2
+- Configure Ubuntu Server
+- Install and Configure Nginx
+- Host Static Website
+- Access Website using Public IP
+- Version Control using Git & GitHub
+
+---
+
+## 🛠 Technologies Used
 
 - AWS EC2
-- Ubuntu Linux
-- Nginx Web Server
+- Ubuntu 24.04 LTS
+- Nginx
 - HTML5
 - CSS3
 - JavaScript
 - Git
 - GitHub
-- SSH
+- Linux Commands
 
 ---
 
-## Architecture
+## 📂 Project Structure
 
-User Browser
-      │
-      ▼
-Public IP Address
-      │
-      ▼
-AWS EC2 Instance (Ubuntu)
-      │
-      ▼
-Nginx Web Server
-      │
-      ▼
-Portfolio Website
-
----
-
-## Prerequisites
-
-- AWS Account
-- EC2 Ubuntu Instance
-- SSH Key Pair (.pem)
-- Portfolio Website Files
-- GitHub Account
-
----
-
-# Step 1: Launch EC2 Instance
-
-- Login to AWS Console
-- Open EC2 Dashboard
-- Launch Ubuntu Server
-- Select t2.micro (Free Tier)
-- Create Key Pair
-- Allow HTTP (80), HTTPS (443) and SSH (22)
-
----
-
-# Step 2: Connect to EC2
-
-```bash
-ssh -i your-key.pem ubuntu@your-public-ip
+```
+aws-ec2-nginx-portfolio-deployment
+│
+├── Portfolio-profile
+│   ├── index.html
+│   ├── image
+│   └── assets
+│
+├── screenshots
+│
+└── README.md
 ```
 
 ---
 
-# Step 3: Update Server
+# Step 1 : Launch EC2 Instance
+
+- Login to AWS Console
+- Open EC2 Dashboard
+- Launch Ubuntu Instance
+- Select t2.micro
+- Create Key Pair
+- Configure Security Group
+    - SSH (22)
+    - HTTP (80)
+
+---
+
+# Step 2 : Connect to EC2
+
+```bash
+ssh -i portfolio-key.pem ubuntu@YOUR_PUBLIC_IP
+```
+
+---
+
+# Step 3 : Update Ubuntu
 
 ```bash
 sudo apt update
@@ -76,12 +78,10 @@ sudo apt upgrade -y
 
 ---
 
-# Step 4: Install Nginx
+# Step 4 : Install Nginx
 
 ```bash
 sudo apt install nginx -y
-sudo systemctl enable nginx
-sudo systemctl start nginx
 ```
 
 Check Status
@@ -90,26 +90,32 @@ Check Status
 sudo systemctl status nginx
 ```
 
----
-
-# Step 5: Upload Portfolio Files
+Enable Nginx
 
 ```bash
-cd /var/www/html
-sudo rm index.nginx-debian.html
-sudo cp -r ~/portfolio/* /var/www/html/
-```
-
-Set Permissions
-
-```bash
-sudo chown -R www-data:www-data /var/www/html
-sudo chmod -R 755 /var/www/html
+sudo systemctl enable nginx
 ```
 
 ---
 
-# Step 6: Restart Nginx
+# Step 5 : Clone Portfolio Project
+
+```bash
+git clone https://github.com/gauriwaydande/myportfoliowebsite.git
+```
+
+---
+
+# Step 6 : Copy Website Files
+
+```bash
+sudo rm -rf /var/www/html/*
+sudo cp -r Portfolio-profile/* /var/www/html/
+```
+
+---
+
+# Step 7 : Restart Nginx
 
 ```bash
 sudo systemctl restart nginx
@@ -117,7 +123,7 @@ sudo systemctl restart nginx
 
 ---
 
-# Step 7: Access Website
+# Step 8 : Access Website
 
 Open Browser
 
@@ -125,57 +131,58 @@ Open Browser
 http://YOUR_PUBLIC_IP
 ```
 
-Example
-
-```
-http://13.xxx.xxx.xxx
-```
+Portfolio Website will be displayed successfully.
 
 ---
 
-## Project Outcome
+## 📷 Screenshots
 
-- Successfully deployed portfolio website on AWS EC2.
-- Installed and configured Nginx Web Server.
-- Hosted a static website on Ubuntu Linux.
-- Learned Linux server management.
-- Website accessible using Public IP.
+### EC2 Instance Running
 
----
+(Add Screenshot)
 
-## Troubleshooting
+### Ubuntu Terminal
 
-### Nginx Not Running
+(Add Screenshot)
 
-```bash
-sudo systemctl restart nginx
-sudo systemctl status nginx
-```
+### Nginx Welcome Page
 
-### Website Not Opening
+(Add Screenshot)
 
-- Check Security Group Rules
-- Verify Port 80 is open
-- Check Nginx Service
-- Verify Public IP
+### Portfolio Website Running
+
+(Add Screenshot)
+
+### GitHub Repository
+
+(Add Screenshot)
 
 ---
 
-## Future Enhancements
+## 📈 Learning Outcome
+
+- AWS EC2 Launch
+- Ubuntu Linux Basics
+- Nginx Installation
+- Website Deployment
+- GitHub Repository Management
+- Linux Commands
+
+---
+
+## 🔧 Future Enhancements
 
 - HTTPS using SSL
 - Custom Domain
 - Docker Deployment
 - CI/CD Pipeline
-- Monitoring using CloudWatch
+- CloudWatch Monitoring
 
 ---
 
-## Author
+## 👩 Author
 
 **Gauri Waidande**
-
-Cloud & DevOps Learner
 
 GitHub:
 https://github.com/gauriwaydande
